@@ -1,8 +1,9 @@
 export const SESSION_COOKIE = "ss_session";
 
-function authPassword(): string {
+function authPassword(): string | undefined {
   const key = ["AUTH", "PASSWORD"].join("_");
-  return process.env[key] || "change-me";
+  const value = process.env[key];
+  return value && value.length > 0 ? value : undefined;
 }
 
 export async function sessionToken(password: string): Promise<string> {
@@ -14,18 +15,27 @@ export async function sessionToken(password: string): Promise<string> {
 }
 
 export function expectedPassword(): string {
-  return authPassword();
+  const password = authPassword();
+  if (!password) {
+    throw new Error("AUTH_PASSWORD is not set");
+  }
+  return password;
 }
 
 export async function expectedSessionToken(): Promise<string> {
-  return sessionToken(authPassword());
+  return sessionToken(expectedPassword());
 }
 
 export async function isValidSession(
   cookieValue: string | undefined,
 ): Promise<boolean> {
   if (!cookieValue) return false;
-  const expected = await expectedSessionToken();
+  let expected: string;
+  try {
+    expected = await expectedSessionToken();
+  } catch {
+    return false;
+  }
   if (cookieValue.length !== expected.length) return false;
   let diff = 0;
   for (let i = 0; i < expected.length; i += 1) {
