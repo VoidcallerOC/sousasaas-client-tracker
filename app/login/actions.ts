@@ -10,7 +10,12 @@ import {
 
 export async function loginAction(formData: FormData) {
   const password = String(formData.get("password") ?? "");
-  const expected = expectedPassword();
+  let expected: string;
+  try {
+    expected = expectedPassword();
+  } catch {
+    redirect("/login?error=config");
+  }
   if (password !== expected) {
     redirect("/login?error=1");
   }
