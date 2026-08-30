@@ -1,5 +1,6 @@
 import { logoutAction } from "@/app/login/actions";
 import { Tracker } from "@/components/tracker";
+import { SyncButton } from "@/components/sync-button";
 import { readClients } from "@/lib/storage";
 
 export const dynamic = "force-dynamic";
@@ -18,14 +19,17 @@ export default async function HomePage() {
             Care plan $35/mo · Potential / Pending / Paid
           </p>
         </div>
-        <form action={logoutAction}>
-          <button
-            type="submit"
-            className="h-12 rounded-xl border border-zinc-800 px-3 text-sm text-zinc-400"
-          >
-            Log out
-          </button>
-        </form>
+        <div className="flex flex-col items-end gap-2">
+          <form action={logoutAction}>
+            <button
+              type="submit"
+              className="h-12 rounded-xl border border-zinc-800 px-3 text-sm text-zinc-400"
+            >
+              Log out
+            </button>
+          </form>
+          <SyncButton />
+        </div>
       </header>
       <Tracker clients={clients} />
     </main>
