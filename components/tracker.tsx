@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { Client, Status } from "@/lib/types";
 import { PIPELINE_STATUSES, STATUSES } from "@/lib/types";
 import { StatusBar, statusBadgeClass } from "./status-bar";
+import { ContactActions } from "./contact-actions";
 import { ClientSheet } from "./client-sheet";
 import { BulkSheet } from "./bulk-sheet";
 
@@ -61,6 +62,7 @@ function ClientCard({
           {bits.length ? <span>{bits.join(" · ")}</span> : null}
         </div>
       </button>
+      <ContactActions client={client} compact className="mt-3" />
       <div className="mt-3">
         <StatusBar id={client.id} current={client.status} />
       </div>

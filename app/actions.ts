@@ -27,6 +27,7 @@ function clientFromForm(formData: FormData, id: string): Client {
     contactName: field(formData, "contactName"),
     phone: field(formData, "phone"),
     email: field(formData, "email"),
+    address: field(formData, "address"),
     quoted: parseMoney(formData.get("quoted")),
     deposit: parseMoney(formData.get("deposit")),
     paid: parseMoney(formData.get("paid")),

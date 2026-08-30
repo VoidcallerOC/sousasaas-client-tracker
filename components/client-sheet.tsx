@@ -3,6 +3,7 @@
 import { useFormStatus } from "react-dom";
 import { createClient, deleteClient, saveClient } from "@/app/actions";
 import { STATUSES, type Client } from "@/lib/types";
+import { ContactActions } from "./contact-actions";
 
 function moneyValue(n: number | null): string {
   return n == null ? "" : String(n);
@@ -90,6 +91,9 @@ export function ClientSheet({
           <input type="hidden" name="id" value={client.id} />
         ) : null}
         <div className="min-h-0 flex-1 space-y-4 overflow-y-auto px-4 pb-6">
+          {mode === "edit" && client ? (
+            <ContactActions client={client} />
+          ) : null}
           <Field
             label="Client"
             name="client"
@@ -159,6 +163,12 @@ export function ClientSheet({
             defaultValue={client?.email}
             type="email"
             inputMode="email"
+          />
+          <Field
+            label="Address"
+            name="address"
+            defaultValue={client?.address}
+            placeholder="123 Main St, Town, CT"
           />
           <div className="grid grid-cols-3 gap-2">
             <Field
