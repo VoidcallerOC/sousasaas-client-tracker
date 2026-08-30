@@ -52,6 +52,14 @@ presence, and independently owned + confirmed operating.
 - Estate Antiques — Plainville (232 W Main) — antiques / estate buyouts — no own site, sells through AuctionNinja — marginal: one review "mostly deals with sales, no in store anything." Small. Verify it's a real storefront first.
 - Renaissance Cyclery — Plainville — bike shop — rencyclery.com is a bare 2-page brochure (address + phone) — since 1974. Low priority; several reviews call the owner abrupt/dismissive.
 
+**Batch 4 verified — food, garden, service trades (all Bristol)**
+
+- Wojtusik's Nursery & Garden Center — Bristol (750 Terryville Ave) — nursery + Christmas shop — no working site (old domain in one directory, listings point to Facebook) — since 1956, 4.7★/61. Owner: Peter Wojtusik. Christmas shop is a real seasonal destination (60 themed trees, Santa photos by appointment, goat petting zoo). Strong.
+- Tommy's Place & Market — Bristol (1277 Stafford Ave) — Italian deli + catering — Facebook only (a directory notes "They use Facebook for a website") — 4.7★/123. Family-owned, catering + holiday trays. Menu + catering pages an obvious win.
+- Crown Upholstery, Boats & Auto — Bristol (562 Farmington Ave) — upholstery (furniture, marine, auto, commercial) — only URL is a dead business.site address (Google killed that product in 2024) — 4.4★/48. Owner: Victor Zapata. Since 1939. Restaurant booths = commercial work worth a portfolio page.
+- South Side Meat Market — Bristol (145 West St) — butcher + catering — site exists but unedited template placeholder text, lists a different street number than Google — 4.8★/223, since 1979, "Best Caterer 2018." Clean upgrade pitch.
+- CMH Small Engine Service — Bristol — small engine service — no site (Facebook only) — 4.9★, **but** BBB C+ for an unanswered complaint and a review about being strung along a month. Marginal — a site won't fix a scheduling problem. *(Added as Potential, flagged low priority.)*
+
 ## Not added to the pipeline (reference only)
 
 ### Ruled out — batch 2 (real, current sites)
@@ -83,6 +91,16 @@ Martel Music, Arlo's Crate (→ ruled out).
 
 > Note on barbers: most run on Booksy/Squire for booking, so the pitch is a real
 > site *around* the booking tool, not a replacement for it. Lower priority than retail.
+
+Batch 4 sweep — still unverified:
+
+**Food:** George's Terryville Ave Market (Bristol) · MO's Deli (Bristol) · Plymouth Meats (Terryville) · Martin Rosol's (New Britain, since 1928)
+
+**Garden:** Bristol Blossoms (no phone listed) · Black Bear Lawn & Garden (Plainville) · Home & Garden Material Center (Terryville) · Larson's (Burlington)
+
+**Small engine:** R&B Repair (Bristol) · Goulds Parts & Services (Bristol) · D&L Equipment (Burlington)
+
+**Upholstery:** Brownie's (Farmington) · Bristol Upholstery (Plymouth) · Carissa's Caning (Northfield) · [RE]new Furniture Refinishing (Wolcott)
 
 ### Ruled out — already have real, working sites
 
