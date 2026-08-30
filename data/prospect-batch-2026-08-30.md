@@ -48,7 +48,7 @@ presence, and independently owned + confirmed operating.
 **Batch 3 verified — bike/moto, repair, antiques (from the candidate queue)**
 
 - Smith Cycles — Bristol (269 Riverside Ave) — motorcycle repair (Harley + metric) — no real site (only a vendor page on technoresearch.info + an auto-generated hub.biz stub) — 4.5★/59. Owner: Shawn. Full-service. Reach by email or in person — multiple reviews say he doesn't answer/return calls.
-- Technical Xpectations — Plainville / Farmington (two addresses listed — verify) — amp/electronics/instrument repair — Wix site exists but pages still titled "Mysite," copyright 2020, half-configured/abandoned — 4.9★. Owner: Mark. Niche repair with real word-of-mouth. Upgrade pitch. Also personally relevant (amp/gear tech).
+- Technical Xpectations — Plainville / Farmington — amp/electronics/instrument repair — abandoned half-configured Wix ("Mysite," copyright 2020) — 4.9★. Owner: Mark. **Do not pitch — conflict of interest: directly competes with dad's business (Upscale Music). Moved to Lost.**
 - Estate Antiques — Plainville (232 W Main) — antiques / estate buyouts — no own site, sells through AuctionNinja — marginal: one review "mostly deals with sales, no in store anything." Small. Verify it's a real storefront first.
 - Renaissance Cyclery — Plainville — bike shop — rencyclery.com is a bare 2-page brochure (address + phone) — since 1974. Low priority; several reviews call the owner abrupt/dismissive.
 
