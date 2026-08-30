@@ -45,6 +45,13 @@ presence, and independently owned + confirmed operating.
 - Gizmo's Antique's & Collectable's — Southington — antiques/collectibles — none found — 4.9★/12. Owner: Bia. Also buys/pawns. Small — flex pricing.
 - Flea Market at the Crossing — Plainville — multi-vendor flea market — plainvillefleamarket.com exists but dated (copyright 2014–2028, static dealer pages) — 20+ yrs, 20 dealers, 10,000 sq ft, Sat/Sun only. Upgrade/rebuild pitch, same shape as WEHA.
 
+**Batch 3 verified — bike/moto, repair, antiques (from the candidate queue)**
+
+- Smith Cycles — Bristol (269 Riverside Ave) — motorcycle repair (Harley + metric) — no real site (only a vendor page on technoresearch.info + an auto-generated hub.biz stub) — 4.5★/59. Owner: Shawn. Full-service. Reach by email or in person — multiple reviews say he doesn't answer/return calls.
+- Technical Xpectations — Plainville / Farmington (two addresses listed — verify) — amp/electronics/instrument repair — Wix site exists but pages still titled "Mysite," copyright 2020, half-configured/abandoned — 4.9★. Owner: Mark. Niche repair with real word-of-mouth. Upgrade pitch. Also personally relevant (amp/gear tech).
+- Estate Antiques — Plainville (232 W Main) — antiques / estate buyouts — no own site, sells through AuctionNinja — marginal: one review "mostly deals with sales, no in store anything." Small. Verify it's a real storefront first.
+- Renaissance Cyclery — Plainville — bike shop — rencyclery.com is a bare 2-page brochure (address + phone) — since 1974. Low priority; several reviews call the owner abrupt/dismissive.
+
 ## Not added to the pipeline (reference only)
 
 ### Ruled out — batch 2 (real, current sites)
@@ -52,15 +59,25 @@ presence, and independently owned + confirmed operating.
 - Seery Strings (Bristol)
 - Curioporium (Southington)
 
+### Ruled out — batch 3 (real, current sites)
+
+- The Music Shop (Southington) — large content-rich site
+- Martel Music (Plainville) — full Shopify, 4,221 products
+- Arlo's Crate (Plantsville) — real site + eBay store
+
 ### Candidate queue — not yet verified
 
-**Music:** The Music Shop (Southington, 40 yrs) · Martel Music (Plainville) · The Music Lab (Milldale) · Technical Xpectations (Plainville, amp/gear repair)
+Verified out of this queue in batch 3: Smith Cycles, Technical Xpectations,
+Estate Antiques, Renaissance Cyclery (→ added as Potential); The Music Shop,
+Martel Music, Arlo's Crate (→ ruled out).
 
-**Antiques:** Estate Antiques (Plainville) · The Attic (Southington — reviews say "never actually opened," check first)
+**Music:** The Music Lab (Milldale)
 
-**Bike/moto:** Renaissance Cyclery (Plainville) · Smith Cycles (Bristol, motorcycle) · Bobby Sprocket (Milldale) · Brumell's Cycling (Harwinton) · RidgeLine Bicycles (Avon) · Cutting Edge (Berlin) · Central Wheel (Farmington)
+**Antiques:** The Attic (Southington — reviews say "never actually opened," check first)
 
-**Coin/pawn:** Arlo's Crate (Plantsville) · Lord Joseph Ltd (Wolcott) · Connecticut Valley Coin (Manchester) · Coins N' Gold (Portland) · Platinum Pawn (Bristol + New Britain) · Silas Deane Pawn (Bristol)
+**Bike/moto:** Bobby Sprocket (Milldale) · Brumell's Cycling (Harwinton) · RidgeLine Bicycles (Avon) · Cutting Edge (Berlin) · Central Wheel (Farmington)
+
+**Coin/pawn:** Lord Joseph Ltd (Wolcott) · Connecticut Valley Coin (Manchester) · Coins N' Gold (Portland) · Platinum Pawn (Bristol + New Britain) · Silas Deane Pawn (Bristol)
 
 **Barber:** The Barber's Factory · In The Cut · LEGEND · V.I.P. · Nu Image (all New Britain) · Royal Razor (Newington) · The Lost Art (Newington)
 
