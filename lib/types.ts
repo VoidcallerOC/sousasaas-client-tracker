@@ -11,6 +11,7 @@ export type Client = {
   contactName: string;
   phone: string;
   email: string;
+  address: string;
   quoted: number | null;
   deposit: number | null;
   paid: number | null;
@@ -30,6 +31,7 @@ export function emptyClient(): Omit<Client, "id"> {
     contactName: "",
     phone: "",
     email: "",
+    address: "",
     quoted: null,
     deposit: null,
     paid: null,
