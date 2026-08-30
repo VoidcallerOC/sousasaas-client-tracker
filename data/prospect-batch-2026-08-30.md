@@ -106,9 +106,9 @@ Batch 4 sweep — still unverified:
 
 Boom Tube Comics · WorthWhile Reads · Dragon's Lair Berlin · Conspiracy Gaming · Thomaston Healthy Pet · Petals & Paws · The Game Factory · Imperial Gaming & Collectibles · The Grid Games · Unsettled Geeks · Uncle Joe's Records · Clocktower Records · CBug's Records · Katco Pet · A to Z Pet Shop
 
-> ⚠️ **Boom Tube Comics** is currently a **Potential** record in the tracker
-> (added in an earlier batch) but this batch rules it out as already having a
-> real, working site. Left as-is pending your call on whether to mark it Lost.
+> **Boom Tube Comics** was a **Potential** record from an earlier batch but
+> this batch rules it out as already having a real, working site. Moved to
+> **Lost**.
 
 ### Prior / do not re-pitch
 
