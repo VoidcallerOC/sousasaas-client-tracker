@@ -108,3 +108,12 @@ export async function writeClients(clients: Client[]): Promise<void> {
   await fs.mkdir(path.dirname(localDataPath()), { recursive: true });
   await fs.writeFile(localDataPath(), JSON.stringify(clients, null, 2));
 }
+
+// Overwrite the live store (Blob in prod) with the dataset shipped in the
+// repo. Lets a repo update win without deleting the blob by hand; replaces
+// any edits made inside the app.
+export async function resetToShippedSeed(): Promise<Client[]> {
+  const seed = await loadShippedSeed();
+  await writeClients(seed);
+  return seed;
+}

@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { emptyClient, isStatus, type Client, type Status } from "@/lib/types";
-import { readClients, writeClients } from "@/lib/storage";
+import { readClients, writeClients, resetToShippedSeed } from "@/lib/storage";
 
 function parseMoney(value: FormDataEntryValue | null): number | null {
   if (value == null) return null;
@@ -63,6 +63,11 @@ export async function createClient(formData: FormData) {
   const clients = await readClients();
   clients.unshift(next);
   await writeClients(clients);
+  revalidatePath("/");
+}
+
+export async function reseedFromRepo() {
+  await resetToShippedSeed();
   revalidatePath("/");
 }
 
