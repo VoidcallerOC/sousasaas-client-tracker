@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { STATUSES, type Status } from "@/lib/types";
 import { setStatus } from "@/app/actions";
 
@@ -33,18 +33,25 @@ export function StatusBar({
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [saveError, setSaveError] = useState(false);
 
   function handleStatusChange(status: Status) {
     if (status === current || isPending) return;
 
+    setSaveError(false);
     startTransition(async () => {
-      await setStatus(id, status);
-      router.refresh();
+      const saved = await setStatus(id, status);
+      if (saved) {
+        router.refresh();
+      } else {
+        setSaveError(true);
+      }
     });
   }
 
   return (
-    <div className="grid grid-cols-4 gap-1.5">
+    <div>
+      <div className="grid grid-cols-4 gap-1.5">
       {STATUSES.map((status) => {
         const active = status === current;
         return (
@@ -63,6 +70,12 @@ export function StatusBar({
           </button>
         );
       })}
+      </div>
+      {saveError ? (
+        <p className="mt-2 text-[11px] leading-4 text-rose-300">
+          Couldn’t save this change. Production storage needs to be configured.
+        </p>
+      ) : null}
     </div>
   );
 }

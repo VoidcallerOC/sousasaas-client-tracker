@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { setContacted } from "@/app/actions";
 
 export function ContactedButton({
@@ -13,18 +13,25 @@ export function ContactedButton({
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [saveError, setSaveError] = useState(false);
 
   function handleClick() {
     if (isPending) return;
 
+    setSaveError(false);
     startTransition(async () => {
-      await setContacted(id, !contacted);
-      router.refresh();
+      const saved = await setContacted(id, !contacted);
+      if (saved) {
+        router.refresh();
+      } else {
+        setSaveError(true);
+      }
     });
   }
 
   return (
-    <button
+    <div className="flex flex-col items-end gap-1">
+      <button
       type="button"
       onClick={(event) => {
         event.stopPropagation();
@@ -39,7 +46,11 @@ export function ContactedButton({
           : "border border-violet-400/40 bg-violet-400/10 text-violet-200"
       }`}
     >
-      {isPending ? "Saving…" : "Contacted"}
-    </button>
+        {isPending ? "Saving…" : "Contacted"}
+      </button>
+      {saveError ? (
+        <span className="text-[10px] text-rose-300">Couldn’t save</span>
+      ) : null}
+    </div>
   );
 }

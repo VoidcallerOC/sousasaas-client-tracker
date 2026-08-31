@@ -74,24 +74,41 @@ export async function reseedFromRepo() {
   revalidatePath("/");
 }
 
-export async function setStatus(id: string, status: Status) {
-  if (!isStatus(status) || !id) return;
-  const clients = await readClients();
-  const idx = clients.findIndex((c) => c.id === id);
-  if (idx === -1) return;
-  clients[idx] = { ...clients[idx], status };
-  await writeClients(clients);
-  revalidatePath("/");
+export async function setStatus(id: string, status: Status): Promise<boolean> {
+  if (!isStatus(status) || !id) return false;
+
+  try {
+    const clients = await readClients();
+    const idx = clients.findIndex((c) => c.id === id);
+    if (idx === -1) return false;
+    clients[idx] = { ...clients[idx], status };
+    await writeClients(clients);
+    revalidatePath("/");
+    return true;
+  } catch (error) {
+    console.error("Unable to persist client status", error);
+    return false;
+  }
 }
 
-export async function setContacted(id: string, contacted: boolean) {
-  if (!id || typeof contacted !== "boolean") return;
-  const clients = await readClients();
-  const idx = clients.findIndex((c) => c.id === id);
-  if (idx === -1) return;
-  clients[idx] = { ...clients[idx], contacted };
-  await writeClients(clients);
-  revalidatePath("/");
+export async function setContacted(
+  id: string,
+  contacted: boolean,
+): Promise<boolean> {
+  if (!id || typeof contacted !== "boolean") return false;
+
+  try {
+    const clients = await readClients();
+    const idx = clients.findIndex((c) => c.id === id);
+    if (idx === -1) return false;
+    clients[idx] = { ...clients[idx], contacted };
+    await writeClients(clients);
+    revalidatePath("/");
+    return true;
+  } catch (error) {
+    console.error("Unable to persist contacted state", error);
+    return false;
+  }
 }
 
 export async function deleteClient(id: string) {
