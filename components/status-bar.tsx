@@ -40,7 +40,8 @@ export function StatusBar({
             onClick={() => {
               if (!active) void setStatus(id, status);
             }}
-            className={`h-12 rounded-xl text-[11px] font-semibold ${
+            aria-pressed={active}
+            className={`h-12 rounded-xl text-xs font-semibold transition-transform active:scale-95 ${
               active ? STYLES[status].on : STYLES[status].off
             }`}
           >

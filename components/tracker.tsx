@@ -64,6 +64,9 @@ function ClientCard({
       </button>
       <ContactActions client={client} compact className="mt-3" />
       <div className="mt-3">
+        <p className="mb-1 text-[10px] font-medium uppercase tracking-wide text-zinc-500">
+          Tap to set status
+        </p>
         <StatusBar id={client.id} current={client.status} />
       </div>
     </article>
