@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useOptimistic, useState } from "react";
 import type { Client, Status } from "@/lib/types";
 import { PIPELINE_STATUSES, STATUSES } from "@/lib/types";
 import { StatusBar, statusBadgeClass } from "./status-bar";
@@ -23,9 +23,11 @@ function money(n: number | null): string | null {
 function ClientCard({
   client,
   onOpen,
+  onStatusChange,
 }: {
   client: Client;
   onOpen: () => void;
+  onStatusChange: (status: Status) => void;
 }) {
   const bits = [
     money(client.quoted) && `quoted ${money(client.quoted)}`,
@@ -81,7 +83,11 @@ function ClientCard({
         <p className="mb-1 text-[10px] font-medium uppercase tracking-wide text-zinc-500">
           Tap to set status
         </p>
-        <StatusBar id={client.id} current={client.status} />
+        <StatusBar
+          id={client.id}
+          current={client.status}
+          onStatusChange={onStatusChange}
+        />
       </div>
     </article>
   );
@@ -91,11 +97,13 @@ function Group({
   title,
   clients,
   onOpen,
+  onStatusChange,
   empty,
 }: {
   title: string;
   clients: Client[];
   onOpen: (c: Client) => void;
+  onStatusChange: (id: string, status: Status) => void;
   empty: string;
 }) {
   return (
@@ -113,7 +121,12 @@ function Group({
       ) : (
         <div className="space-y-3">
           {clients.map((c) => (
-            <ClientCard key={c.id} client={c} onOpen={() => onOpen(c)} />
+            <ClientCard
+              key={c.id}
+              client={c}
+              onOpen={() => onOpen(c)}
+              onStatusChange={(status) => onStatusChange(c.id, status)}
+            />
           ))}
         </div>
       )}
@@ -122,10 +135,23 @@ function Group({
 }
 
 export function Tracker({ clients }: { clients: Client[] }) {
+  const [localClients, setLocalClients] = useOptimistic(
+    clients,
+    (current: Client[], update: { id: string; status: Status }) =>
+      current.map((client) =>
+        client.id === update.id
+          ? { ...client, status: update.status }
+          : client,
+      ),
+  );
   const [filter, setFilter] = useState<Filter>("pipeline");
   const [editing, setEditing] = useState<Client | null>(null);
   const [creating, setCreating] = useState(false);
   const [bulk, setBulk] = useState(false);
+
+  function handleStatusChange(id: string, status: Status) {
+    setLocalClients({ id, status });
+  }
 
   const counts = useMemo(() => {
     const map: Record<Status, number> = {
@@ -134,9 +160,9 @@ export function Tracker({ clients }: { clients: Client[] }) {
       Paid: 0,
       Lost: 0,
     };
-    for (const c of clients) map[c.status] += 1;
+    for (const c of localClients) map[c.status] += 1;
     return map;
-  }, [clients]);
+  }, [localClients]);
 
   const grouped = useMemo(() => {
     const map: Record<Status, Client[]> = {
@@ -145,9 +171,9 @@ export function Tracker({ clients }: { clients: Client[] }) {
       Paid: [],
       Lost: [],
     };
-    for (const c of clients) map[c.status].push(c);
+    for (const c of localClients) map[c.status].push(c);
     return map;
-  }, [clients]);
+  }, [localClients]);
 
   const filters: { id: Filter; label: string }[] = [
     { id: "pipeline", label: "Pipeline" },
@@ -155,15 +181,15 @@ export function Tracker({ clients }: { clients: Client[] }) {
     { id: "Pending", label: `Pending ${counts.Pending}` },
     { id: "Paid", label: `Paid ${counts.Paid}` },
     { id: "Lost", label: `Lost ${counts.Lost}` },
-    { id: "contacted", label: `Contacted ${clients.filter((c) => c.contacted).length}` },
+    { id: "contacted", label: `Contacted ${localClients.filter((c) => c.contacted).length}` },
     { id: "all", label: "All" },
   ];
 
   const visible =
     filter === "contacted"
-      ? clients.filter((client) => client.contacted)
+      ? localClients.filter((client) => client.contacted)
       : filter === "pipeline" || filter === "all"
-        ? clients
+        ? localClients
         : grouped[filter];
 
   return (
@@ -196,6 +222,7 @@ export function Tracker({ clients }: { clients: Client[] }) {
               title={status}
               clients={grouped[status]}
               onOpen={setEditing}
+              onStatusChange={handleStatusChange}
               empty={`No ${status.toLowerCase()} clients`}
             />
           ))}
@@ -216,6 +243,7 @@ export function Tracker({ clients }: { clients: Client[] }) {
           }
           clients={visible}
           onOpen={setEditing}
+          onStatusChange={handleStatusChange}
           empty="Nothing here yet"
         />
       )}

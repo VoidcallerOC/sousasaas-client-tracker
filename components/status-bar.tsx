@@ -27,9 +27,11 @@ const STYLES: Record<Status, { on: string; off: string }> = {
 export function StatusBar({
   id,
   current,
+  onStatusChange,
 }: {
   id: string;
   current: Status;
+  onStatusChange?: (status: Status) => void;
 }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -39,11 +41,13 @@ export function StatusBar({
     if (status === current || isPending) return;
 
     setSaveError(false);
+    onStatusChange?.(status);
     startTransition(async () => {
       const saved = await setStatus(id, status);
       if (saved) {
         router.refresh();
       } else {
+        onStatusChange?.(current);
         setSaveError(true);
       }
     });
