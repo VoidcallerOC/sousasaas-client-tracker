@@ -58,9 +58,9 @@
   },
   {
     "id": "c-hard-hitting",
-    "client": "Hard Hitting",
-    "businessType": "",
-    "status": "Lost",
+    "client": "Hard Hittin' Cards",
+    "businessType": "sports cards",
+    "status": "Potential",
     "contactName": "",
     "phone": "",
     "email": "",
@@ -71,9 +71,9 @@
     "githubRepo": "VoidcallerOC/Hard-Hitting",
     "liveUrl": "",
     "domain": "",
-    "nextAction": "",
-    "notes": "declined (said no)",
-    "lastContacted": ""
+    "nextAction": "Hot lead — owner wants the site. Send quote/proposal; lean on the Sahar (Thousand Sunny) referral.",
+    "notes": "Southington, CT. Reopened from Lost: the earlier 'no' came from the co-owner. Talked to the actual owner in person (2026-08-31) — he's all about the site. Knows Sahar from Thousand Sunny (existing client) — warm referral angle.",
+    "lastContacted": "2026-08-31"
   },
   {
     "id": "c-boom-tube",
