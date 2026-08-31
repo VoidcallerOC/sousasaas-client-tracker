@@ -7,8 +7,9 @@ import { StatusBar, statusBadgeClass } from "./status-bar";
 import { ContactActions } from "./contact-actions";
 import { ClientSheet } from "./client-sheet";
 import { BulkSheet } from "./bulk-sheet";
+import { ContactedButton } from "./contacted-button";
 
-type Filter = "pipeline" | Status | "all";
+type Filter = "pipeline" | "contacted" | Status | "all";
 
 function money(n: number | null): string | null {
   if (n == null) return null;
@@ -39,11 +40,18 @@ function ClientCard({
           <h3 className="text-[17px] font-semibold leading-snug text-zinc-50">
             {client.client}
           </h3>
-          <span
-            className={`shrink-0 rounded-full px-2 py-1 text-[11px] font-semibold ${statusBadgeClass(client.status)}`}
-          >
-            {client.status}
-          </span>
+          <div className="flex shrink-0 items-center gap-1.5">
+            {client.contacted ? (
+              <span className="rounded-full bg-violet-400/15 px-2 py-1 text-[11px] font-semibold text-violet-200">
+                Contacted
+              </span>
+            ) : null}
+            <span
+              className={`rounded-full px-2 py-1 text-[11px] font-semibold ${statusBadgeClass(client.status)}`}
+            >
+              {client.status}
+            </span>
+          </div>
         </div>
         {client.businessType ? (
           <p className="mt-1 text-sm text-zinc-400">{client.businessType}</p>
@@ -63,6 +71,12 @@ function ClientCard({
         </div>
       </button>
       <ContactActions client={client} compact className="mt-3" />
+      <div className="mt-3 flex items-center justify-between gap-2">
+        <p className="text-[10px] font-medium uppercase tracking-wide text-zinc-500">
+          Portfolio follow-up
+        </p>
+        <ContactedButton id={client.id} contacted={client.contacted} />
+      </div>
       <div className="mt-3">
         <p className="mb-1 text-[10px] font-medium uppercase tracking-wide text-zinc-500">
           Tap to set status
@@ -141,13 +155,16 @@ export function Tracker({ clients }: { clients: Client[] }) {
     { id: "Pending", label: `Pending ${counts.Pending}` },
     { id: "Paid", label: `Paid ${counts.Paid}` },
     { id: "Lost", label: `Lost ${counts.Lost}` },
+    { id: "contacted", label: `Contacted ${clients.filter((c) => c.contacted).length}` },
     { id: "all", label: "All" },
   ];
 
   const visible =
-    filter === "pipeline" || filter === "all"
-      ? clients
-      : grouped[filter];
+    filter === "contacted"
+      ? clients.filter((client) => client.contacted)
+      : filter === "pipeline" || filter === "all"
+        ? clients
+        : grouped[filter];
 
   return (
     <div>
@@ -190,8 +207,14 @@ export function Tracker({ clients }: { clients: Client[] }) {
         </>
       ) : (
         <Group
-          title={filter === "all" ? "All clients" : filter}
-          clients={filter === "all" ? clients : visible}
+          title={
+            filter === "all"
+              ? "All clients"
+              : filter === "contacted"
+                ? "Contacted"
+                : filter
+          }
+          clients={visible}
           onOpen={setEditing}
           empty="Nothing here yet"
         />

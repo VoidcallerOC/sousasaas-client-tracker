@@ -8,6 +8,7 @@ export type Client = {
   client: string;
   businessType: string;
   status: Status;
+  contacted: boolean;
   contactName: string;
   phone: string;
   email: string;
@@ -28,6 +29,7 @@ export function emptyClient(): Omit<Client, "id"> {
     client: "",
     businessType: "",
     status: "Potential",
+    contacted: false,
     contactName: "",
     phone: "",
     email: "",

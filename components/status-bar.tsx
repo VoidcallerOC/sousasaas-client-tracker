@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { STATUSES, type Status } from "@/lib/types";
 import { setStatus } from "@/app/actions";
 
@@ -29,6 +31,18 @@ export function StatusBar({
   id: string;
   current: Status;
 }) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  function handleStatusChange(status: Status) {
+    if (status === current || isPending) return;
+
+    startTransition(async () => {
+      await setStatus(id, status);
+      router.refresh();
+    });
+  }
+
   return (
     <div className="grid grid-cols-4 gap-1.5">
       {STATUSES.map((status) => {
@@ -37,11 +51,11 @@ export function StatusBar({
           <button
             key={status}
             type="button"
-            onClick={() => {
-              if (!active) void setStatus(id, status);
-            }}
+            onClick={() => handleStatusChange(status)}
+            disabled={active || isPending}
             aria-pressed={active}
-            className={`h-12 rounded-xl text-xs font-semibold transition-transform active:scale-95 ${
+            aria-label={`Move client to ${status}`}
+            className={`h-12 rounded-xl text-xs font-semibold transition-transform active:scale-95 disabled:cursor-wait disabled:opacity-60 ${
               active ? STYLES[status].on : STYLES[status].off
             }`}
           >

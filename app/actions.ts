@@ -24,6 +24,7 @@ function clientFromForm(formData: FormData, id: string): Client {
     client: field(formData, "client"),
     businessType: field(formData, "businessType"),
     status,
+    contacted: field(formData, "contacted") === "true",
     contactName: field(formData, "contactName"),
     phone: field(formData, "phone"),
     email: field(formData, "email"),
@@ -43,14 +44,16 @@ function clientFromForm(formData: FormData, id: string): Client {
 export async function saveClient(formData: FormData) {
   const id = field(formData, "id");
   if (!id) return;
-  const next = clientFromForm(formData, id);
-  if (!next.client) return;
+  const submitted = clientFromForm(formData, id);
+  if (!submitted.client) return;
   const clients = await readClients();
   const idx = clients.findIndex((c) => c.id === id);
   if (idx === -1) {
-    clients.unshift(next);
+    clients.unshift(submitted);
   } else {
-    clients[idx] = next;
+    clients[idx] = formData.has("contacted")
+      ? submitted
+      : { ...submitted, contacted: clients[idx].contacted };
   }
   await writeClients(clients);
   revalidatePath("/");
@@ -77,6 +80,16 @@ export async function setStatus(id: string, status: Status) {
   const idx = clients.findIndex((c) => c.id === id);
   if (idx === -1) return;
   clients[idx] = { ...clients[idx], status };
+  await writeClients(clients);
+  revalidatePath("/");
+}
+
+export async function setContacted(id: string, contacted: boolean) {
+  if (!id || typeof contacted !== "boolean") return;
+  const clients = await readClients();
+  const idx = clients.findIndex((c) => c.id === id);
+  if (idx === -1) return;
+  clients[idx] = { ...clients[idx], contacted };
   await writeClients(clients);
   revalidatePath("/");
 }

@@ -17,21 +17,34 @@ function localDataPath(): string {
   return path.join(process.cwd(), "data", "clients.json");
 }
 
+function normalizeClients(value: unknown): Client[] | null {
+  if (!Array.isArray(value)) return null;
+
+  return value.map((record) => {
+    const client = record as Partial<Client>;
+    return {
+      ...client,
+      contacted:
+        typeof client.contacted === "boolean"
+          ? client.contacted
+          : Boolean(client.lastContacted),
+    } as Client;
+  });
+}
+
 async function loadShippedSeed(): Promise<Client[]> {
   const filePath = localDataPath();
   const raw = await fs.readFile(filePath, "utf8");
-  const parsed = JSON.parse(raw) as unknown;
-  if (!Array.isArray(parsed)) {
+  const parsed = normalizeClients(JSON.parse(raw) as unknown);
+  if (!parsed) {
     throw new Error("Shipped data/clients.json is not an array");
   }
-  return parsed as Client[];
+  return parsed;
 }
 
 async function parseClientsJson(text: string): Promise<Client[] | null> {
   if (!text.trim()) return null;
-  const parsed = JSON.parse(text) as unknown;
-  if (!Array.isArray(parsed)) return null;
-  return parsed as Client[];
+  return normalizeClients(JSON.parse(text) as unknown);
 }
 
 async function readFromBlob(): Promise<Client[] | null> {
