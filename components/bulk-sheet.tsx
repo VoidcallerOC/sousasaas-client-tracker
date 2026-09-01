@@ -9,7 +9,7 @@ function Submit() {
     <button
       type="submit"
       disabled={pending}
-      className="h-12 flex-1 rounded-xl bg-[#f4b41a] text-base font-semibold text-zinc-950 disabled:opacity-60"
+      className="h-12 flex-1 rounded-xl bg-emerald-400 text-base font-semibold text-zinc-950 disabled:opacity-60"
     >
       {pending ? "Adding…" : "Add to Potential"}
     </button>
@@ -47,7 +47,7 @@ export function BulkSheet({ onClose }: { onClose: () => void }) {
             required
             rows={12}
             placeholder={"Shop A\nShop B\nShop C"}
-            className="mt-4 h-[50vh] w-full rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-3 text-base text-zinc-50 outline-none focus:border-[#f4b41a]/60"
+            className="mt-4 h-[50vh] w-full rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-3 text-base text-zinc-50 outline-none focus:border-emerald-400/60"
           />
         </div>
         <div className="flex gap-2 border-t border-zinc-800 px-4 py-3">

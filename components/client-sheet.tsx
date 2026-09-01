@@ -35,7 +35,7 @@ function Field({
         defaultValue={defaultValue}
         placeholder={placeholder}
         inputMode={inputMode}
-        className="mt-1.5 h-12 w-full rounded-xl border border-zinc-800 bg-zinc-900 px-3 text-base text-zinc-50 outline-none focus:border-[#f4b41a]/60"
+        className="mt-1.5 h-12 w-full rounded-xl border border-zinc-800 bg-zinc-900 px-3 text-base text-zinc-50 outline-none focus:border-emerald-400/60"
       />
     </label>
   );
@@ -47,7 +47,7 @@ function SaveButton({ label }: { label: string }) {
     <button
       type="submit"
       disabled={pending}
-      className="h-12 flex-1 rounded-xl bg-[#f4b41a] text-base font-semibold text-zinc-950 disabled:opacity-60"
+      className="h-12 flex-1 rounded-xl bg-emerald-400 text-base font-semibold text-zinc-950 disabled:opacity-60"
     >
       {pending ? "Saving…" : label}
     </button>
@@ -136,7 +136,7 @@ export function ClientSheet({
               name="notes"
               defaultValue={client?.notes}
               rows={4}
-              className="mt-1.5 w-full rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-3 text-base text-zinc-50 outline-none focus:border-[#f4b41a]/60"
+              className="mt-1.5 w-full rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-3 text-base text-zinc-50 outline-none focus:border-emerald-400/60"
             />
           </label>
           <Field

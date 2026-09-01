@@ -77,7 +77,7 @@ export function ContactActions({
           onClick={(e) => e.stopPropagation()}
           className={`${base} ${
             a.primary
-              ? "bg-[#f4b41a] text-zinc-950"
+              ? "bg-emerald-400 text-zinc-950"
               : "border border-zinc-700 bg-zinc-900 text-zinc-100"
           }`}
         >
