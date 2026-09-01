@@ -249,7 +249,7 @@ export function Tracker({ clients }: { clients: Client[] }) {
           <button
             type="button"
             onClick={() => setCreating(true)}
-            className="h-12 flex-1 rounded-xl bg-emerald-400 text-base font-semibold text-zinc-950"
+            className="h-12 flex-1 rounded-xl bg-[#f4b41a] text-base font-semibold text-zinc-950"
           >
             Add client
           </button>

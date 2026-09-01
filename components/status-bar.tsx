@@ -11,8 +11,8 @@ const STYLES: Record<Status, { on: string; off: string }> = {
     off: "bg-zinc-900 text-sky-300 border border-zinc-800",
   },
   Pending: {
-    on: "bg-amber-400 text-zinc-950",
-    off: "bg-zinc-900 text-amber-300 border border-zinc-800",
+    on: "bg-[#f4b41a] text-zinc-950",
+    off: "bg-zinc-900 text-[#f4b41a] border border-zinc-800",
   },
   Paid: {
     on: "bg-emerald-400 text-zinc-950",
@@ -89,7 +89,7 @@ export function statusBadgeClass(status: Status): string {
     case "Potential":
       return "bg-sky-400/15 text-sky-300";
     case "Pending":
-      return "bg-amber-400/15 text-amber-300";
+      return "bg-[#f4b41a]/15 text-[#f4b41a]";
     case "Paid":
       return "bg-emerald-400/15 text-emerald-300";
     case "Lost":
