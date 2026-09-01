@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useOptimistic, useState } from "react";
+import { useMemo, useState } from "react";
 import type { Client, Status } from "@/lib/types";
 import { PIPELINE_STATUSES, STATUSES } from "@/lib/types";
 import { StatusBar, statusBadgeClass } from "./status-bar";
@@ -135,22 +135,18 @@ function Group({
 }
 
 export function Tracker({ clients }: { clients: Client[] }) {
-  const [localClients, setLocalClients] = useOptimistic(
-    clients,
-    (current: Client[], update: { id: string; status: Status }) =>
-      current.map((client) =>
-        client.id === update.id
-          ? { ...client, status: update.status }
-          : client,
-      ),
-  );
+  const [localClients, setLocalClients] = useState(clients);
   const [filter, setFilter] = useState<Filter>("pipeline");
   const [editing, setEditing] = useState<Client | null>(null);
   const [creating, setCreating] = useState(false);
   const [bulk, setBulk] = useState(false);
 
   function handleStatusChange(id: string, status: Status) {
-    setLocalClients({ id, status });
+    setLocalClients((current) =>
+      current.map((client) =>
+        client.id === id ? { ...client, status } : client,
+      ),
+    );
   }
 
   const counts = useMemo(() => {
