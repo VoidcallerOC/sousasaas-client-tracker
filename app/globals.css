@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: var(--font-serif), "Instrument Serif", Georgia, serif;
+}
+
 :root {
   color-scheme: dark;
 }
