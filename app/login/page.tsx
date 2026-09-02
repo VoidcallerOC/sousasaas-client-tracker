@@ -9,7 +9,7 @@ export default async function LoginPage({
   return (
     <main className="mx-auto flex min-h-dvh w-full max-w-[390px] flex-col justify-center px-5 py-10">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-400">
-        SousaSaaS
+        Front Window
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-50">
         Client tracker
