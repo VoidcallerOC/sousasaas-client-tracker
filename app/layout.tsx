@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SousaSaaS Client Tracker",
-  description: "Private phone-first CRM for SousaSaaS clients.",
+  title: "Front Window Client Tracker",
+  description: "Private phone-first CRM for Front Window clients.",
   robots: { index: false, follow: false },
 };
 

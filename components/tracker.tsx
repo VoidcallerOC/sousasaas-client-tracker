@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Client, Status } from "@/lib/types";
 import { PIPELINE_STATUSES, STATUSES } from "@/lib/types";
 import { StatusBar, statusBadgeClass } from "./status-bar";
@@ -24,10 +24,12 @@ function ClientCard({
   client,
   onOpen,
   onStatusChange,
+  onContactedChange,
 }: {
   client: Client;
   onOpen: () => void;
   onStatusChange: (status: Status) => void;
+  onContactedChange: (contacted: boolean) => void;
 }) {
   const bits = [
     money(client.quoted) && `quoted ${money(client.quoted)}`,
@@ -77,7 +79,11 @@ function ClientCard({
         <p className="text-[10px] font-medium uppercase tracking-wide text-zinc-500">
           Portfolio follow-up
         </p>
-        <ContactedButton id={client.id} contacted={client.contacted} />
+        <ContactedButton
+          id={client.id}
+          contacted={client.contacted}
+          onContactedChange={onContactedChange}
+        />
       </div>
       <div className="mt-3">
         <p className="mb-1 text-[10px] font-medium uppercase tracking-wide text-zinc-500">
@@ -98,12 +104,14 @@ function Group({
   clients,
   onOpen,
   onStatusChange,
+  onContactedChange,
   empty,
 }: {
   title: string;
   clients: Client[];
   onOpen: (c: Client) => void;
   onStatusChange: (id: string, status: Status) => void;
+  onContactedChange: (id: string, contacted: boolean) => void;
   empty: string;
 }) {
   return (
@@ -126,6 +134,9 @@ function Group({
               client={c}
               onOpen={() => onOpen(c)}
               onStatusChange={(status) => onStatusChange(c.id, status)}
+              onContactedChange={(contacted) =>
+                onContactedChange(c.id, contacted)
+              }
             />
           ))}
         </div>
@@ -141,10 +152,23 @@ export function Tracker({ clients }: { clients: Client[] }) {
   const [creating, setCreating] = useState(false);
   const [bulk, setBulk] = useState(false);
 
+  // Keep card UI in sync after router.refresh() / Sync (useState only seeds once).
+  useEffect(() => {
+    setLocalClients(clients);
+  }, [clients]);
+
   function handleStatusChange(id: string, status: Status) {
     setLocalClients((current) =>
       current.map((client) =>
         client.id === id ? { ...client, status } : client,
+      ),
+    );
+  }
+
+  function handleContactedChange(id: string, contacted: boolean) {
+    setLocalClients((current) =>
+      current.map((client) =>
+        client.id === id ? { ...client, contacted } : client,
       ),
     );
   }
@@ -219,6 +243,7 @@ export function Tracker({ clients }: { clients: Client[] }) {
               clients={grouped[status]}
               onOpen={setEditing}
               onStatusChange={handleStatusChange}
+              onContactedChange={handleContactedChange}
               empty={`No ${status.toLowerCase()} clients`}
             />
           ))}
@@ -240,6 +265,7 @@ export function Tracker({ clients }: { clients: Client[] }) {
           clients={visible}
           onOpen={setEditing}
           onStatusChange={handleStatusChange}
+          onContactedChange={handleContactedChange}
           empty="Nothing here yet"
         />
       )}

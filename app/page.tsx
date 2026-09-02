@@ -12,7 +12,7 @@ export default async function HomePage() {
       <header className="flex items-start justify-between gap-3">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-400">
-            SousaSaaS
+            Front Window
           </p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight">Clients</h1>
           <p className="mt-1 text-sm text-zinc-400">
